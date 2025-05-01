@@ -59,7 +59,7 @@ if menu == "🏠 Beranda":
     st.write("""
         Selamat datang di aplikasi **Deteksi Penurunan Tanah di Kota Padang**!  
         Aplikasi ini dirancang untuk **menganalisis dan memprediksi** penurunan tanah di wilayah Kota Padang  
-        menggunakan model **PLSTM (Predictive Long Short-Term Memory)**.  
+        menggunakan model **PLSTM (Phased Long Short-Term Memory)**.  
     """)
     st.image("https://source.unsplash.com/800x400/?padang,indonesia,landscape", use_column_width=True)
     st.info("Gunakan menu di sidebar untuk melihat analisis, prediksi, dan peta penurunan tanah.")
