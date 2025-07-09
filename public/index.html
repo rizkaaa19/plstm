@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Land Subsidence Detection System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="main-header">
+            <h1><i class="fas fa-globe"></i> Land Subsidence Detection System</h1>
+            <p>Advanced PLSTM-based Land Subsidence Prediction for Padang City</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="navigation">
+            <button class="nav-btn active" data-page="home">
+                <i class="fas fa-home"></i> Home
+            </button>
+            <button class="nav-btn" data-page="processing">
+                <i class="fas fa-cogs"></i> Data Processing
+            </button>
+            <button class="nav-btn" data-page="prediction">
+                <i class="fas fa-chart-line"></i> Prediction
+            </button>
+            <button class="nav-btn" data-page="analysis">
+                <i class="fas fa-chart-bar"></i> Analysis
+            </button>
+            <button class="nav-btn" data-page="map">
+                <i class="fas fa-map"></i> Subsidence Map
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Home Page -->
+            <div id="home" class="page active">
+                <div class="content-grid">
+                    <div class="content-card">
+                        <h3><i class="fas fa-bullseye"></i> Research Objectives</h3>
+                        <ul>
+                            <li><strong>Design and implement PLSTM model</strong> for time-series land subsidence data</li>
+                            <li><strong>Integrate high-precision RINEX data</strong> from GPS measurements</li>
+                            <li><strong>Evaluate PLSTM performance</strong> against traditional ML techniques</li>
+                            <li><strong>Develop risk management strategies</strong> combining ML and policy approaches</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-card">
+                        <h3><i class="fas fa-star"></i> Key Features</h3>
+                        <ul>
+                            <li><strong>Real-time Processing</strong>: Live data analysis and prediction</li>
+                            <li><strong>High Accuracy</strong>: PLSTM architecture for complex pattern recognition</li>
+                            <li><strong>Interactive Visualization</strong>: Dynamic maps and charts</li>
+                            <li><strong>Model Export</strong>: Download trained models for deployment</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="pipeline-card">
+                    <h3><i class="fas fa-sync-alt"></i> Data Processing Pipeline</h3>
+                    <div class="pipeline-steps">
+                        <div class="step">RINEX Data</div>
+                        <div class="arrow">→</div>
+                        <div class="step">Leica Infinity</div>
+                        <div class="arrow">→</div>
+                        <div class="step">Cleaned Data</div>
+                        <div class="arrow">→</div>
+                        <div class="step">Time-Series</div>
+                        <div class="arrow">→</div>
+                        <div class="step">PLSTM Model</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Processing Page -->
+            <div id="processing" class="page">
+                <div class="step-header">
+                    <h2><i class="fas fa-cogs"></i> Data Processing & Model Training</h2>
+                    <p>Complete ML Pipeline from Raw Data to Trained Model</p>
+                </div>
+
+                <div class="step-card">
+                    <h3>Step 1: Data Loading & Quality Check</h3>
+                    <div class="file-upload-area">
+                        <input type="file" id="csvFiles" multiple accept=".csv" style="display: none;">
+                        <button class="upload-btn" onclick="document.getElementById('csvFiles').click()">
+                            <i class="fas fa-upload"></i> Select CSV Files
+                        </button>
+                        <p>Upload RINEX CSV files (cpdg2021.csv, cpdg2022.csv, etc.)</p>
+                    </div>
+                    <button id="processData" class="primary-btn" disabled>
+                        <i class="fas fa-play"></i> Load and Process Data
+                    </button>
+                </div>
+
+                <div id="dataOverview" class="data-overview" style="display: none;">
+                    <h3>📋 Data Overview</h3>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <h4>📊 Total Records</h4>
+                            <span id="totalRecords">-</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>📅 Date Range</h4>
+                            <span id="dateRange">-</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>🔢 Features</h4>
+                            <span id="featuresCount">-</span>
+                        </div>
+                        <div class="metric-card">
+                            <h4>✅ Status</h4>
+                            <span id="dataStatus">Ready</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <h3>Step 2: Model Training Configuration</h3>
+                    <div class="config-grid">
+                        <div class="config-group">
+                            <label>Training Epochs:</label>
+                            <input type="range" id="epochs" min="10" max="200" value="50">
+                            <span id="epochsValue">50</span>
+                        </div>
+                        <div class="config-group">
+                            <label>Batch Size:</label>
+                            <select id="batchSize">
+                                <option value="16">16</option>
+                                <option value="32" selected>32</option>
+                                <option value="64">64</option>
+                                <option value="128">128</option>
+                            </select>
+                        </div>
+                        <div class="config-group">
+                            <label>Sequence Length:</label>
+                            <input type="range" id="sequenceLength" min="5" max="50" value="10">
+                            <span id="sequenceLengthValue">10</span>
+                        </div>
+                        <div class="config-group">
+                            <label>Validation Split:</label>
+                            <input type="range" id="validationSplit" min="0.1" max="0.3" step="0.05" value="0.2">
+                            <span id="validationSplitValue">0.2</span>
+                        </div>
+                    </div>
+                    <button id="startTraining" class="primary-btn" disabled>
+                        <i class="fas fa-rocket"></i> Start Training
+                    </button>
+                </div>
+
+                <div id="trainingProgress" class="training-progress" style="display: none;">
+                    <h3>🚀 Training Progress</h3>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                    <div id="trainingMetrics" class="training-metrics"></div>
+                </div>
+            </div>
+
+            <!-- Prediction Page -->
+            <div id="prediction" class="page">
+                <div class="step-header">
+                    <h2><i class="fas fa-chart-line"></i> Real-time Land Subsidence Prediction</h2>
+                    <p>Make predictions using trained PLSTM model</p>
+                </div>
+
+                <div class="prediction-form">
+                    <h3>📝 Input Parameters</h3>
+                    <div class="input-grid">
+                        <div class="input-group">
+                            <label>Easting [m]:</label>
+                            <input type="number" id="easting" step="0.000001" placeholder="0.000000">
+                        </div>
+                        <div class="input-group">
+                            <label>Northing [m]:</label>
+                            <input type="number" id="northing" step="0.000001" placeholder="0.000000">
+                        </div>
+                        <div class="input-group">
+                            <label>Ortho Height [m]:</label>
+                            <input type="number" id="orthoHeight" step="0.000001" placeholder="0.000000">
+                        </div>
+                        <div class="input-group">
+                            <label>WGS84 Ellip Height [m]:</label>
+                            <input type="number" id="ellipHeight" step="0.000001" placeholder="0.000000">
+                        </div>
+                    </div>
+                    <button id="makePrediction" class="primary-btn">
+                        <i class="fas fa-search"></i> Make Prediction
+                    </button>
+                </div>
+
+                <div id="predictionResults" class="prediction-results" style="display: none;">
+                    <h3>📊 Prediction Results</h3>
+                    <div class="results-grid">
+                        <div class="result-card">
+                            <h4>Predicted Subsidence</h4>
+                            <span id="subsidenceValue" class="result-value">-</span>
+                        </div>
+                        <div class="result-card">
+                            <h4>Risk Level</h4>
+                            <span id="riskLevel" class="result-value">-</span>
+                        </div>
+                        <div class="result-card">
+                            <h4>Confidence</h4>
+                            <span id="confidence" class="result-value">-</span>
+                        </div>
+                    </div>
+                    <div class="gauge-container">
+                        <canvas id="riskGauge" width="400" height="200"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analysis Page -->
+            <div id="analysis" class="page">
+                <div class="step-header">
+                    <h2><i class="fas fa-chart-bar"></i> Land Subsidence Analysis</h2>
+                    <p>Comprehensive analysis of land subsidence patterns</p>
+                </div>
+
+                <div class="analysis-container">
+                    <div class="chart-container">
+                        <h3>📈 Time Series Analysis</h3>
+                        <canvas id="timeSeriesChart" width="800" height="400"></canvas>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <h3>🗺️ Spatial Distribution</h3>
+                        <canvas id="spatialChart" width="800" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map Page -->
+            <div id="map" class="page">
+                <div class="step-header">
+                    <h2><i class="fas fa-map"></i> Land Subsidence Map</h2>
+                    <p>Interactive map showing subsidence risk areas in Padang City</p>
+                </div>
+
+                <div class="map-container">
+                    <div id="subsidenceMap" class="map"></div>
+                </div>
+
+                <div class="risk-summary">
+                    <h3>📊 Risk Summary</h3>
+                    <div class="risk-grid">
+                        <div class="risk-card high">
+                            <i class="fas fa-circle"></i>
+                            <span>High Risk Areas</span>
+                            <strong id="highRiskCount">2</strong>
+                        </div>
+                        <div class="risk-card medium">
+                            <i class="fas fa-circle"></i>
+                            <span>Medium Risk Areas</span>
+                            <strong id="mediumRiskCount">2</strong>
+                        </div>
+                        <div class="risk-card low">
+                            <i class="fas fa-circle"></i>
+                            <span>Low Risk Areas</span>
+                            <strong id="lowRiskCount">1</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <h3><i class="fas fa-globe"></i> Land Subsidence Detection System</h3>
+            <p>Advanced PLSTM-based prediction system for Padang City</p>
+            <p>© 2025 - Developed with modern web technologies</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Processing...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
