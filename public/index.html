@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌍 Land Subsidence Detection System</title>
+    <title>🌍 PLSTM Land Subsidence Detection System</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -12,8 +12,22 @@
     <div class="app-container">
         <!-- Header -->
         <header class="main-header">
-            <h1><i class="fas fa-globe"></i> Land Subsidence Detection System</h1>
-            <p>Advanced PLSTM-based Land Subsidence Prediction for Padang City</p>
+            <h1><i class="fas fa-globe"></i> PLSTM Land Subsidence Detection System</h1>
+            <p>Advanced Parallel Long Short-Term Memory for Land Subsidence Prediction in Padang City</p>
+            <div class="header-stats">
+                <div class="stat-item">
+                    <i class="fas fa-database"></i>
+                    <span>RINEX Data Processing</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-brain"></i>
+                    <span>PLSTM Architecture</span>
+                </div>
+                <div class="stat-item">
+                    <i class="fas fa-chart-line"></i>
+                    <span>Real-time Prediction</span>
+                </div>
+            </div>
         </header>
 
         <!-- Navigation -->
@@ -21,8 +35,8 @@
             <button class="nav-btn active" data-page="home">
                 <i class="fas fa-home"></i> Home
             </button>
-            <button class="nav-btn" data-page="processing">
-                <i class="fas fa-cogs"></i> Data Processing
+            <button class="nav-btn" data-page="data-training">
+                <i class="fas fa-cogs"></i> Data & Training
             </button>
             <button class="nav-btn" data-page="prediction">
                 <i class="fas fa-chart-line"></i> Prediction
@@ -31,7 +45,7 @@
                 <i class="fas fa-chart-bar"></i> Analysis
             </button>
             <button class="nav-btn" data-page="map">
-                <i class="fas fa-map"></i> Subsidence Map
+                <i class="fas fa-map"></i> Risk Map
             </button>
         </nav>
 
@@ -39,208 +53,608 @@
         <main class="main-content">
             <!-- Home Page -->
             <div id="home" class="page active">
-                <div class="content-grid">
-                    <div class="content-card">
-                        <h3><i class="fas fa-bullseye"></i> Research Objectives</h3>
-                        <ul>
-                            <li><strong>Design and implement PLSTM model</strong> for time-series land subsidence data</li>
-                            <li><strong>Integrate high-precision RINEX data</strong> from GPS measurements</li>
-                            <li><strong>Evaluate PLSTM performance</strong> against traditional ML techniques</li>
-                            <li><strong>Develop risk management strategies</strong> combining ML and policy approaches</li>
-                        </ul>
+                <div class="research-overview">
+                    <div class="overview-card">
+                        <h2><i class="fas fa-bullseye"></i> Research Objectives</h2>
+                        <div class="objectives-grid">
+                            <div class="objective-item">
+                                <div class="objective-number">1</div>
+                                <div class="objective-content">
+                                    <h4>PLSTM Model Design</h4>
+                                    <p>Design and implement PLSTM model for effective time-series data handling from multiple sub-regions with varying land subsidence rates</p>
+                                </div>
+                            </div>
+                            <div class="objective-item">
+                                <div class="objective-number">2</div>
+                                <div class="objective-content">
+                                    <h4>RINEX Data Integration</h4>
+                                    <p>Integrate high-precision GPS measurements from RINEX data into PLSTM model for accurate land subsidence predictions</p>
+                                </div>
+                            </div>
+                            <div class="objective-item">
+                                <div class="objective-number">3</div>
+                                <div class="objective-content">
+                                    <h4>Performance Evaluation</h4>
+                                    <p>Evaluate PLSTM performance against traditional ML techniques in prediction accuracy, computational efficiency, and scalability</p>
+                                </div>
+                            </div>
+                            <div class="objective-item">
+                                <div class="objective-number">4</div>
+                                <div class="objective-content">
+                                    <h4>Risk Management Strategy</h4>
+                                    <p>Explore ML and regulatory policy combination for improved risk management in land subsidence-prone areas</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="content-card">
-                        <h3><i class="fas fa-star"></i> Key Features</h3>
-                        <ul>
-                            <li><strong>Real-time Processing</strong>: Live data analysis and prediction</li>
-                            <li><strong>High Accuracy</strong>: PLSTM architecture for complex pattern recognition</li>
-                            <li><strong>Interactive Visualization</strong>: Dynamic maps and charts</li>
-                            <li><strong>Model Export</strong>: Download trained models for deployment</li>
-                        </ul>
-                    </div>
-                </div>
 
-                <div class="pipeline-card">
-                    <h3><i class="fas fa-sync-alt"></i> Data Processing Pipeline</h3>
-                    <div class="pipeline-steps">
-                        <div class="step">RINEX Data</div>
-                        <div class="arrow">→</div>
-                        <div class="step">Leica Infinity</div>
-                        <div class="arrow">→</div>
-                        <div class="step">Cleaned Data</div>
-                        <div class="arrow">→</div>
-                        <div class="step">Time-Series</div>
-                        <div class="arrow">→</div>
-                        <div class="step">PLSTM Model</div>
+                    <div class="methodology-card">
+                        <h2><i class="fas fa-sync-alt"></i> Data Processing Pipeline</h2>
+                        <div class="pipeline-flow">
+                            <div class="pipeline-step">
+                                <div class="step-icon"><i class="fas fa-satellite"></i></div>
+                                <div class="step-content">
+                                    <h4>Raw GNSS Data</h4>
+                                    <p>.sth format collection</p>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">
+                                <div class="step-icon"><i class="fas fa-exchange-alt"></i></div>
+                                <div class="step-content">
+                                    <h4>RINEX Conversion</h4>
+                                    <p>STHtoRINEX (.o, .n, .g)</p>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">
+                                <div class="step-icon"><i class="fas fa-tools"></i></div>
+                                <div class="step-content">
+                                    <h4>Leica Infinity</h4>
+                                    <p>SPP Processing & CORS</p>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">
+                                <div class="step-icon"><i class="fas fa-table"></i></div>
+                                <div class="step-content">
+                                    <h4>Clean Data</h4>
+                                    <p>Coordinate Export (.xlsx)</p>
+                                </div>
+                            </div>
+                            <div class="pipeline-arrow">→</div>
+                            <div class="pipeline-step">
+                                <div class="step-icon"><i class="fas fa-brain"></i></div>
+                                <div class="step-content">
+                                    <h4>PLSTM Model</h4>
+                                    <p>Time-series Prediction</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="contributions-card">
+                        <h2><i class="fas fa-star"></i> Key Contributions</h2>
+                        <div class="contributions-grid">
+                            <div class="contribution-item">
+                                <i class="fas fa-microchip"></i>
+                                <h4>PLSTM Implementation</h4>
+                                <p>First application of Parallel LSTM for land subsidence prediction with improved efficiency and scalability</p>
+                            </div>
+                            <div class="contribution-item">
+                                <i class="fas fa-satellite-dish"></i>
+                                <h4>RINEX Integration</h4>
+                                <p>Robust high-precision GPS data integration for enhanced spatial-temporal measurements</p>
+                            </div>
+                            <div class="contribution-item">
+                                <i class="fas fa-chart-line"></i>
+                                <h4>Performance Evaluation</h4>
+                                <p>Comprehensive PLSTM evaluation with multiple time-series processing capabilities</p>
+                            </div>
+                            <div class="contribution-item">
+                                <i class="fas fa-shield-alt"></i>
+                                <h4>Risk Management</h4>
+                                <p>Actionable insights combining ML with regulatory approaches for urban risk mitigation</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Data Processing Page -->
-            <div id="processing" class="page">
-                <div class="step-header">
-                    <h2><i class="fas fa-cogs"></i> Data Processing & Model Training</h2>
-                    <p>Complete ML Pipeline from Raw Data to Trained Model</p>
+            <!-- Data & Training Page -->
+            <div id="data-training" class="page">
+                <div class="training-header">
+                    <h2><i class="fas fa-cogs"></i> Data Processing & PLSTM Model Training</h2>
+                    <p>Complete machine learning pipeline from raw RINEX data to trained PLSTM model</p>
                 </div>
 
-                <div class="step-card">
-                    <h3>Step 1: Data Loading & Quality Check</h3>
-                    <div class="file-upload-area">
-                        <input type="file" id="csvFiles" multiple accept=".csv" style="display: none;">
-                        <button class="upload-btn" onclick="document.getElementById('csvFiles').click()">
-                            <i class="fas fa-upload"></i> Select CSV Files
+                <!-- Step 1: Data Upload -->
+                <div class="training-step" id="step1">
+                    <div class="step-header">
+                        <div class="step-number">1</div>
+                        <h3>Data Upload & Quality Check</h3>
+                        <div class="step-status" id="step1-status">Pending</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="upload-zone">
+                            <input type="file" id="csvFiles" multiple accept=".csv" style="display: none;">
+                            <div class="upload-area" onclick="document.getElementById('csvFiles').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <h4>Upload RINEX CSV Files</h4>
+                                <p>Select processed CSV files from Leica Infinity (cpdg2021.csv, cpdg2022.csv, etc.)</p>
+                                <button class="upload-btn">
+                                    <i class="fas fa-folder-open"></i> Browse Files
+                                </button>
+                            </div>
+                        </div>
+                        <div id="fileList" class="file-list" style="display: none;"></div>
+                        <button id="loadData" class="primary-btn" disabled>
+                            <i class="fas fa-play"></i> Load and Validate Data
                         </button>
-                        <p>Upload RINEX CSV files (cpdg2021.csv, cpdg2022.csv, etc.)</p>
-                    </div>
-                    <button id="processData" class="primary-btn" disabled>
-                        <i class="fas fa-play"></i> Load and Process Data
-                    </button>
-                </div>
-
-                <div id="dataOverview" class="data-overview" style="display: none;">
-                    <h3>📋 Data Overview</h3>
-                    <div class="metrics-grid">
-                        <div class="metric-card">
-                            <h4>📊 Total Records</h4>
-                            <span id="totalRecords">-</span>
-                        </div>
-                        <div class="metric-card">
-                            <h4>📅 Date Range</h4>
-                            <span id="dateRange">-</span>
-                        </div>
-                        <div class="metric-card">
-                            <h4>🔢 Features</h4>
-                            <span id="featuresCount">-</span>
-                        </div>
-                        <div class="metric-card">
-                            <h4>✅ Status</h4>
-                            <span id="dataStatus">Ready</span>
-                        </div>
                     </div>
                 </div>
 
-                <div class="step-card">
-                    <h3>Step 2: Model Training Configuration</h3>
-                    <div class="config-grid">
-                        <div class="config-group">
-                            <label>Training Epochs:</label>
-                            <input type="range" id="epochs" min="10" max="200" value="50">
-                            <span id="epochsValue">50</span>
-                        </div>
-                        <div class="config-group">
-                            <label>Batch Size:</label>
-                            <select id="batchSize">
-                                <option value="16">16</option>
-                                <option value="32" selected>32</option>
-                                <option value="64">64</option>
-                                <option value="128">128</option>
-                            </select>
-                        </div>
-                        <div class="config-group">
-                            <label>Sequence Length:</label>
-                            <input type="range" id="sequenceLength" min="5" max="50" value="10">
-                            <span id="sequenceLengthValue">10</span>
-                        </div>
-                        <div class="config-group">
-                            <label>Validation Split:</label>
-                            <input type="range" id="validationSplit" min="0.1" max="0.3" step="0.05" value="0.2">
-                            <span id="validationSplitValue">0.2</span>
-                        </div>
+                <!-- Step 2: Data Preview -->
+                <div class="training-step" id="step2" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">2</div>
+                        <h3>Data Preview & Statistics</h3>
+                        <div class="step-status" id="step2-status">Pending</div>
                     </div>
-                    <button id="startTraining" class="primary-btn" disabled>
-                        <i class="fas fa-rocket"></i> Start Training
-                    </button>
+                    <div class="step-content">
+                        <div class="data-preview-container">
+                            <div class="preview-tabs">
+                                <button class="tab-btn active" data-tab="summary">Summary</button>
+                                <button class="tab-btn" data-tab="sample">Sample Data</button>
+                                <button class="tab-btn" data-tab="quality">Data Quality</button>
+                                <button class="tab-btn" data-tab="visualization">Visualization</button>
+                            </div>
+                            
+                            <div id="summary-tab" class="tab-content active">
+                                <div class="summary-grid">
+                                    <div class="summary-card">
+                                        <h4><i class="fas fa-database"></i> Dataset Info</h4>
+                                        <div class="info-item">
+                                            <span>Total Records:</span>
+                                            <strong id="totalRecords">-</strong>
+                                        </div>
+                                        <div class="info-item">
+                                            <span>Date Range:</span>
+                                            <strong id="dateRange">-</strong>
+                                        </div>
+                                        <div class="info-item">
+                                            <span>Features:</span>
+                                            <strong id="featuresCount">-</strong>
+                                        </div>
+                                    </div>
+                                    <div class="summary-card">
+                                        <h4><i class="fas fa-map-marker-alt"></i> Spatial Coverage</h4>
+                                        <div class="info-item">
+                                            <span>Latitude Range:</span>
+                                            <strong id="latRange">-</strong>
+                                        </div>
+                                        <div class="info-item">
+                                            <span>Longitude Range:</span>
+                                            <strong id="lonRange">-</strong>
+                                        </div>
+                                        <div class="info-item">
+                                            <span>Height Range:</span>
+                                            <strong id="heightRange">-</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="sample-tab" class="tab-content">
+                                <div class="table-container">
+                                    <table id="sampleDataTable" class="data-table">
+                                        <thead></thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            <div id="quality-tab" class="tab-content">
+                                <div class="quality-metrics">
+                                    <div class="quality-card">
+                                        <h4><i class="fas fa-exclamation-triangle"></i> Missing Values</h4>
+                                        <div id="missingValues"></div>
+                                    </div>
+                                    <div class="quality-card">
+                                        <h4><i class="fas fa-chart-bar"></i> Data Distribution</h4>
+                                        <canvas id="distributionChart" width="400" height="200"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div id="visualization-tab" class="tab-content">
+                                <div class="viz-container">
+                                    <canvas id="spatialChart" width="600" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="proceedToPreprocessing" class="primary-btn">
+                            <i class="fas fa-arrow-right"></i> Proceed to Preprocessing
+                        </button>
+                    </div>
                 </div>
 
-                <div id="trainingProgress" class="training-progress" style="display: none;">
-                    <h3>🚀 Training Progress</h3>
-                    <div class="progress-bar">
-                        <div id="progressFill" class="progress-fill"></div>
+                <!-- Step 3: Data Preprocessing -->
+                <div class="training-step" id="step3" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">3</div>
+                        <h3>Data Preprocessing & Feature Engineering</h3>
+                        <div class="step-status" id="step3-status">Pending</div>
                     </div>
-                    <div id="trainingMetrics" class="training-metrics"></div>
+                    <div class="step-content">
+                        <div class="preprocessing-options">
+                            <div class="option-group">
+                                <h4><i class="fas fa-filter"></i> Data Cleaning</h4>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="removeOutliers" checked>
+                                    Remove outliers using IQR method
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="fillMissing" checked>
+                                    Fill missing values with interpolation
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="smoothData" checked>
+                                    Apply smoothing filter
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <h4><i class="fas fa-expand-arrows-alt"></i> Feature Scaling</h4>
+                                <select id="scalingMethod">
+                                    <option value="minmax">Min-Max Normalization</option>
+                                    <option value="standard">Standard Scaling</option>
+                                    <option value="robust">Robust Scaling</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <h4><i class="fas fa-clock"></i> Time Series Configuration</h4>
+                                <label>Sequence Length:</label>
+                                <input type="range" id="sequenceLength" min="5" max="50" value="10">
+                                <span id="sequenceLengthValue">10</span>
+                                <label>Prediction Horizon:</label>
+                                <input type="range" id="predictionHorizon" min="1" max="10" value="1">
+                                <span id="predictionHorizonValue">1</span>
+                            </div>
+                        </div>
+                        <button id="startPreprocessing" class="primary-btn">
+                            <i class="fas fa-play"></i> Start Preprocessing
+                        </button>
+                        <div id="preprocessingProgress" class="progress-container" style="display: none;">
+                            <div class="progress-bar">
+                                <div id="preprocessingFill" class="progress-fill"></div>
+                            </div>
+                            <div id="preprocessingStatus" class="progress-status"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 4: Model Configuration -->
+                <div class="training-step" id="step4" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">4</div>
+                        <h3>PLSTM Model Configuration</h3>
+                        <div class="step-status" id="step4-status">Pending</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="model-config-grid">
+                            <div class="config-section">
+                                <h4><i class="fas fa-layer-group"></i> Architecture</h4>
+                                <div class="config-item">
+                                    <label>LSTM Units:</label>
+                                    <input type="range" id="lstmUnits" min="32" max="256" value="64" step="32">
+                                    <span id="lstmUnitsValue">64</span>
+                                </div>
+                                <div class="config-item">
+                                    <label>Number of Layers:</label>
+                                    <input type="range" id="numLayers" min="1" max="4" value="2">
+                                    <span id="numLayersValue">2</span>
+                                </div>
+                                <div class="config-item">
+                                    <label>Dropout Rate:</label>
+                                    <input type="range" id="dropoutRate" min="0" max="0.5" step="0.1" value="0.2">
+                                    <span id="dropoutRateValue">0.2</span>
+                                </div>
+                            </div>
+                            <div class="config-section">
+                                <h4><i class="fas fa-cog"></i> Training Parameters</h4>
+                                <div class="config-item">
+                                    <label>Epochs:</label>
+                                    <input type="range" id="epochs" min="10" max="200" value="50">
+                                    <span id="epochsValue">50</span>
+                                </div>
+                                <div class="config-item">
+                                    <label>Batch Size:</label>
+                                    <select id="batchSize">
+                                        <option value="16">16</option>
+                                        <option value="32" selected>32</option>
+                                        <option value="64">64</option>
+                                        <option value="128">128</option>
+                                    </select>
+                                </div>
+                                <div class="config-item">
+                                    <label>Learning Rate:</label>
+                                    <select id="learningRate">
+                                        <option value="0.001" selected>0.001</option>
+                                        <option value="0.01">0.01</option>
+                                        <option value="0.0001">0.0001</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="config-section">
+                                <h4><i class="fas fa-chart-pie"></i> Data Split</h4>
+                                <div class="config-item">
+                                    <label>Training Split:</label>
+                                    <input type="range" id="trainSplit" min="0.6" max="0.8" step="0.05" value="0.7">
+                                    <span id="trainSplitValue">70%</span>
+                                </div>
+                                <div class="config-item">
+                                    <label>Validation Split:</label>
+                                    <input type="range" id="validationSplit" min="0.1" max="0.3" step="0.05" value="0.2">
+                                    <span id="validationSplitValue">20%</span>
+                                </div>
+                                <div class="config-item">
+                                    <label>Test Split:</label>
+                                    <span id="testSplitValue">10%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="startTraining" class="primary-btn">
+                            <i class="fas fa-rocket"></i> Start PLSTM Training
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Step 5: Model Training -->
+                <div class="training-step" id="step5" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">5</div>
+                        <h3>PLSTM Model Training</h3>
+                        <div class="step-status" id="step5-status">Training</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="training-dashboard">
+                            <div class="training-metrics">
+                                <div class="metric-card">
+                                    <h4>Current Epoch</h4>
+                                    <span id="currentEpoch">0</span>/<span id="totalEpochs">50</span>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>Training Loss</h4>
+                                    <span id="trainingLoss">-</span>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>Validation Loss</h4>
+                                    <span id="validationLoss">-</span>
+                                </div>
+                                <div class="metric-card">
+                                    <h4>RMSE</h4>
+                                    <span id="rmseValue">-</span>
+                                </div>
+                            </div>
+                            <div class="training-progress">
+                                <div class="progress-bar">
+                                    <div id="trainingProgressFill" class="progress-fill"></div>
+                                </div>
+                                <div id="trainingStatus" class="progress-status">Initializing...</div>
+                            </div>
+                            <div class="training-charts">
+                                <div class="chart-container">
+                                    <h4>Loss Curves</h4>
+                                    <canvas id="lossChart" width="400" height="200"></canvas>
+                                </div>
+                                <div class="chart-container">
+                                    <h4>Metrics</h4>
+                                    <canvas id="metricsChart" width="400" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 6: Model Evaluation & Download -->
+                <div class="training-step" id="step6" style="display: none;">
+                    <div class="step-header">
+                        <div class="step-number">6</div>
+                        <h3>Model Evaluation & Export</h3>
+                        <div class="step-status" id="step6-status">Complete</div>
+                    </div>
+                    <div class="step-content">
+                        <div class="evaluation-results">
+                            <div class="results-grid">
+                                <div class="result-card">
+                                    <h4><i class="fas fa-chart-line"></i> Final Metrics</h4>
+                                    <div class="metric-item">
+                                        <span>RMSE:</span>
+                                        <strong id="finalRMSE">-</strong>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>MAE:</span>
+                                        <strong id="finalMAE">-</strong>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>MSE:</span>
+                                        <strong id="finalMSE">-</strong>
+                                    </div>
+                                </div>
+                                <div class="result-card">
+                                    <h4><i class="fas fa-clock"></i> Training Info</h4>
+                                    <div class="metric-item">
+                                        <span>Training Time:</span>
+                                        <strong id="trainingTime">-</strong>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>Best Epoch:</span>
+                                        <strong id="bestEpoch">-</strong>
+                                    </div>
+                                    <div class="metric-item">
+                                        <span>Model Size:</span>
+                                        <strong id="modelSize">-</strong>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="prediction-preview">
+                                <h4><i class="fas fa-eye"></i> Prediction Preview</h4>
+                                <canvas id="predictionChart" width="800" height="300"></canvas>
+                            </div>
+                            <div class="download-section">
+                                <h4><i class="fas fa-download"></i> Download Trained Model</h4>
+                                <div class="download-options">
+                                    <button id="downloadModel" class="download-btn">
+                                        <i class="fas fa-brain"></i> Download PLSTM Model (.h5)
+                                    </button>
+                                    <button id="downloadWeights" class="download-btn">
+                                        <i class="fas fa-weight-hanging"></i> Download Weights Only
+                                    </button>
+                                    <button id="downloadConfig" class="download-btn">
+                                        <i class="fas fa-cog"></i> Download Configuration
+                                    </button>
+                                    <button id="downloadReport" class="download-btn">
+                                        <i class="fas fa-file-pdf"></i> Download Training Report
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Prediction Page -->
             <div id="prediction" class="page">
-                <div class="step-header">
+                <div class="prediction-header">
                     <h2><i class="fas fa-chart-line"></i> Real-time Land Subsidence Prediction</h2>
                     <p>Make predictions using trained PLSTM model</p>
                 </div>
 
-                <div class="prediction-form">
-                    <h3>📝 Input Parameters</h3>
-                    <div class="input-grid">
-                        <div class="input-group">
-                            <label>Easting [m]:</label>
-                            <input type="number" id="easting" step="0.000001" placeholder="0.000000">
+                <div class="prediction-container">
+                    <div class="prediction-form">
+                        <h3><i class="fas fa-map-marker-alt"></i> Input Coordinates</h3>
+                        <div class="input-grid">
+                            <div class="input-group">
+                                <label>Easting [m]:</label>
+                                <input type="number" id="easting" step="0.000001" placeholder="0.000000">
+                            </div>
+                            <div class="input-group">
+                                <label>Northing [m]:</label>
+                                <input type="number" id="northing" step="0.000001" placeholder="0.000000">
+                            </div>
+                            <div class="input-group">
+                                <label>Ortho Height [m]:</label>
+                                <input type="number" id="orthoHeight" step="0.000001" placeholder="0.000000">
+                            </div>
+                            <div class="input-group">
+                                <label>WGS84 Ellip Height [m]:</label>
+                                <input type="number" id="ellipHeight" step="0.000001" placeholder="0.000000">
+                            </div>
                         </div>
-                        <div class="input-group">
-                            <label>Northing [m]:</label>
-                            <input type="number" id="northing" step="0.000001" placeholder="0.000000">
-                        </div>
-                        <div class="input-group">
-                            <label>Ortho Height [m]:</label>
-                            <input type="number" id="orthoHeight" step="0.000001" placeholder="0.000000">
-                        </div>
-                        <div class="input-group">
-                            <label>WGS84 Ellip Height [m]:</label>
-                            <input type="number" id="ellipHeight" step="0.000001" placeholder="0.000000">
-                        </div>
+                        <button id="makePrediction" class="primary-btn">
+                            <i class="fas fa-search"></i> Predict Subsidence
+                        </button>
                     </div>
-                    <button id="makePrediction" class="primary-btn">
-                        <i class="fas fa-search"></i> Make Prediction
-                    </button>
-                </div>
 
-                <div id="predictionResults" class="prediction-results" style="display: none;">
-                    <h3>📊 Prediction Results</h3>
-                    <div class="results-grid">
-                        <div class="result-card">
-                            <h4>Predicted Subsidence</h4>
-                            <span id="subsidenceValue" class="result-value">-</span>
+                    <div id="predictionResults" class="prediction-results" style="display: none;">
+                        <h3><i class="fas fa-chart-bar"></i> Prediction Results</h3>
+                        <div class="results-dashboard">
+                            <div class="result-card">
+                                <h4>Predicted Subsidence</h4>
+                                <span id="subsidenceValue" class="result-value">-</span>
+                            </div>
+                            <div class="result-card">
+                                <h4>Risk Level</h4>
+                                <span id="riskLevel" class="result-value">-</span>
+                            </div>
+                            <div class="result-card">
+                                <h4>Confidence</h4>
+                                <span id="confidence" class="result-value">-</span>
+                            </div>
+                            <div class="result-card">
+                                <h4>Trend</h4>
+                                <span id="trend" class="result-value">-</span>
+                            </div>
                         </div>
-                        <div class="result-card">
-                            <h4>Risk Level</h4>
-                            <span id="riskLevel" class="result-value">-</span>
+                        <div class="gauge-container">
+                            <canvas id="riskGauge" width="400" height="200"></canvas>
                         </div>
-                        <div class="result-card">
-                            <h4>Confidence</h4>
-                            <span id="confidence" class="result-value">-</span>
-                        </div>
-                    </div>
-                    <div class="gauge-container">
-                        <canvas id="riskGauge" width="400" height="200"></canvas>
                     </div>
                 </div>
             </div>
 
             <!-- Analysis Page -->
             <div id="analysis" class="page">
-                <div class="step-header">
+                <div class="analysis-header">
                     <h2><i class="fas fa-chart-bar"></i> Land Subsidence Analysis</h2>
-                    <p>Comprehensive analysis of land subsidence patterns</p>
+                    <p>Comprehensive analysis of land subsidence patterns and trends</p>
                 </div>
 
                 <div class="analysis-container">
-                    <div class="chart-container">
-                        <h3>📈 Time Series Analysis</h3>
-                        <canvas id="timeSeriesChart" width="800" height="400"></canvas>
+                    <div class="analysis-controls">
+                        <div class="control-group">
+                            <label>Analysis Type:</label>
+                            <select id="analysisType">
+                                <option value="temporal">Temporal Analysis</option>
+                                <option value="spatial">Spatial Analysis</option>
+                                <option value="correlation">Correlation Analysis</option>
+                                <option value="trend">Trend Analysis</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label>Time Range:</label>
+                            <select id="timeRange">
+                                <option value="all">All Data</option>
+                                <option value="2024">2024</option>
+                                <option value="2023">2023</option>
+                                <option value="2022">2022</option>
+                                <option value="2021">2021</option>
+                            </select>
+                        </div>
+                        <button id="updateAnalysis" class="primary-btn">
+                            <i class="fas fa-sync"></i> Update Analysis
+                        </button>
                     </div>
-                    
-                    <div class="chart-container">
-                        <h3>🗺️ Spatial Distribution</h3>
-                        <canvas id="spatialChart" width="800" height="400"></canvas>
+
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3>Time Series Analysis</h3>
+                            <canvas id="timeSeriesChart" width="800" height="400"></canvas>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <h3>Spatial Distribution</h3>
+                            <canvas id="spatialAnalysisChart" width="800" height="400"></canvas>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Map Page -->
             <div id="map" class="page">
-                <div class="step-header">
-                    <h2><i class="fas fa-map"></i> Land Subsidence Map</h2>
+                <div class="map-header">
+                    <h2><i class="fas fa-map"></i> Land Subsidence Risk Map</h2>
                     <p>Interactive map showing subsidence risk areas in Padang City</p>
+                </div>
+
+                <div class="map-controls">
+                    <div class="control-group">
+                        <label>Layer:</label>
+                        <select id="mapLayer">
+                            <option value="risk">Risk Level</option>
+                            <option value="subsidence">Subsidence Rate</option>
+                            <option value="elevation">Elevation</option>
+                        </select>
+                    </div>
+                    <div class="control-group">
+                        <label>Time Period:</label>
+                        <select id="timePeriod">
+                            <option value="current">Current</option>
+                            <option value="2024">2024</option>
+                            <option value="2023">2023</option>
+                            <option value="2022">2022</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="map-container">
@@ -248,7 +662,7 @@
                 </div>
 
                 <div class="risk-summary">
-                    <h3>📊 Risk Summary</h3>
+                    <h3><i class="fas fa-chart-pie"></i> Risk Summary</h3>
                     <div class="risk-grid">
                         <div class="risk-card high">
                             <i class="fas fa-circle"></i>
@@ -258,7 +672,7 @@
                         <div class="risk-card medium">
                             <i class="fas fa-circle"></i>
                             <span>Medium Risk Areas</span>
-                            <strong id="mediumRiskCount">2</strong>
+                            <strong id="mediumRiskCount">3</strong>
                         </div>
                         <div class="risk-card low">
                             <i class="fas fa-circle"></i>
@@ -272,9 +686,33 @@
 
         <!-- Footer -->
         <footer class="footer">
-            <h3><i class="fas fa-globe"></i> Land Subsidence Detection System</h3>
-            <p>Advanced PLSTM-based prediction system for Padang City</p>
-            <p>© 2025 - Developed with modern web technologies</p>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3><i class="fas fa-globe"></i> PLSTM Land Subsidence System</h3>
+                    <p>Advanced machine learning system for land subsidence prediction in Padang City using Parallel Long Short-Term Memory architecture.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Research Focus</h4>
+                    <ul>
+                        <li>RINEX Data Processing</li>
+                        <li>PLSTM Architecture</li>
+                        <li>Real-time Prediction</li>
+                        <li>Risk Management</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Evaluation Metrics</h4>
+                    <ul>
+                        <li>RMSE (Root Mean Square Error)</li>
+                        <li>MAE (Mean Absolute Error)</li>
+                        <li>MSE (Mean Squared Error)</li>
+                        <li>Temporal Accuracy</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 - PLSTM Land Subsidence Detection System | Advanced ML Research</p>
+            </div>
         </footer>
     </div>
 
@@ -282,7 +720,7 @@
     <div id="loadingOverlay" class="loading-overlay" style="display: none;">
         <div class="loading-spinner">
             <i class="fas fa-spinner fa-spin"></i>
-            <p>Processing...</p>
+            <p id="loadingText">Processing...</p>
         </div>
     </div>
 
